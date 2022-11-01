@@ -7,6 +7,8 @@ from nazurin.utils import Request
 from nazurin.utils.decorators import network_retry
 from nazurin.utils.exceptions import NazurinError
 
+from .config import DESTINATION
+
 class Bilibili:
     @network_retry
     async def get_dynamic(self, dynamic_id: int):
@@ -49,8 +51,8 @@ class Bilibili:
             imgs.append(
                 Image(
                     str(dynamic_id) + '_' + str(index) + extension, url,
-                    url + '@518w.jpg', pic['img_size'], pic['img_width'],
-                    pic['img_height']))
+                    DESTINATION, url + '@518w.jpg', pic['img_size'],
+                    pic['img_width'], pic['img_height']))
         return imgs
 
     @staticmethod
